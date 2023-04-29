@@ -1,4 +1,4 @@
-package com.wenubey.firebaseauth.ui.theme
+package com.wenubey.firebaseauth.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
