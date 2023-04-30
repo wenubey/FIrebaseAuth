@@ -15,6 +15,7 @@ object Constants {
     const val FORGOT_PASSWORD_SCREEN_TITLE = "Forgot Password"
     const val SIGN_IN_SCREEN_TITLE = "Sign In"
     const val PROFILE_SCREEN_TITLE = "Profile"
+    const val SIGN_UP_SCREEN_TITLE = "Sign Up"
 
 
     // BUTTONS
@@ -29,6 +30,7 @@ object Constants {
     const val FORGOT_PASSWORD = "Forgot password?"
     const val NO_ACCOUNT = "Don't you have an account? Sign Up!"
     const val REVOKE_ACCESS_MESSAGE = "You need to re-authenticate before revoking the access."
+    const val ALREADY_USER = "Already a user? Sign in."
 
 
     //CONTENT DESCRIPTIONS
@@ -45,6 +47,7 @@ object Constants {
     const val RESET_PASSWORD_MESSAGE = "We've sent you an email with a link to reset the password."
     const val ACCESS_REVOKED_MESSAGE = "Your access has been revoked."
     const val SENSITIVE_OPERATION_MESSAGE = "This operation is sensitive and requires recent authentication. Log in again before retrying this request."
+    const val VERIFY_EMAIL_MESSAGE = "We've sent you an email with a link to verify the email."
 
 
 }

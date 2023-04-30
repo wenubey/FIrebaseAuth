@@ -39,5 +39,6 @@ fun ProfileScreen(
     RevokeAccess(
         snackbarHostState = snackbarHostState,
         coroutineScope = coroutineScope,
-        signOut = { viewModel.signOut() })
+        signOut = { viewModel.signOut() }
+    )
 }
