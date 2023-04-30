@@ -13,6 +13,7 @@ object Constants {
 
     //SCREEN TITLES
     const val FORGOT_PASSWORD_SCREEN_TITLE = "Forgot Password"
+    const val SIGN_IN_SCREEN_TITLE = "Sign In"
 
 
     // BUTTONS
@@ -23,8 +24,14 @@ object Constants {
     const val DELETE = "Delete"
 
 
+    //TEXTS
+    const val FORGOT_PASSWORD = "Forgot password?"
+    const val NO_ACCOUNT = "Don't you have an account? Sign Up!"
+
+
     //CONTENT DESCRIPTIONS
     const val BACK_BUTTON_DESCRIPTION = "Back to previous screen"
+    const val PASSWORD_VISIBILITY_DESCRIPTION = "Password visibility on/off"
 
 
     //LABELS

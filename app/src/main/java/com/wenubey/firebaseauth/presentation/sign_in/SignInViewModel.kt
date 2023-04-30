@@ -1,4 +1,4 @@
-package com.wenubey.firebaseauth.presentation.forgot_password
+package com.wenubey.firebaseauth.presentation.sign_in
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,16 +12,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ForgotPasswordViewModel @Inject constructor(
+class SignInViewModel @Inject constructor(
     private val repo: AuthRepository
 ): ViewModel() {
 
-    var isSentPasswordReset by mutableStateOf<Resource<Boolean>>(Resource.Success(false))
+    var isUserSigned by mutableStateOf<Resource<Boolean>>(Resource.Success(false))
+        private set
 
-    fun sendPasswordResetEmail(email: String) = viewModelScope.launch {
-        isSentPasswordReset = Resource.Loading
+    fun signInWithEmailAndPassword(email: String, password: String) = viewModelScope.launch {
+        isUserSigned = Resource.Loading
 
-        isSentPasswordReset = repo.sendPasswordResetEmail(email)
+        isUserSigned = repo.signInWithEmailAndPassword(email, password)
     }
-
 }

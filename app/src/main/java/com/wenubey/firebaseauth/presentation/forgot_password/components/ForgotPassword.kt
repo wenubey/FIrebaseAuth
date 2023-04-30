@@ -15,7 +15,7 @@ fun ForgotPassword(
     showResetPasswordMessage: () -> Unit,
     showErrorMessage: (error: String?) -> Unit
 ) {
-    when(val response = viewModel.sendPasswordReset) {
+    when(val response = viewModel.isSentPasswordReset) {
         is Resource.Loading -> ProgressBar()
         is Resource.Success -> {
             val isResetEmailSent = response.data
