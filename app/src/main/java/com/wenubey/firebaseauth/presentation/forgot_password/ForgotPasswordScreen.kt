@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.wenubey.firebaseauth.core.Constants.RESET_PASSWORD_MESSAGE
-import com.wenubey.firebaseauth.core.components.Utils.Companion.makeToast
+import com.wenubey.firebaseauth.core.Utils.Companion.makeToast
 import com.wenubey.firebaseauth.presentation.forgot_password.components.ForgotPassword
 import com.wenubey.firebaseauth.presentation.forgot_password.components.ForgotPasswordContent
 import com.wenubey.firebaseauth.presentation.forgot_password.components.ForgotPasswordTopAppBar

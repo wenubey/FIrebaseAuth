@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.wenubey.firebaseauth.core.components.ProgressBar
-import com.wenubey.firebaseauth.core.components.Utils.Companion.printLog
+import com.wenubey.firebaseauth.core.Utils.Companion.printLog
 import com.wenubey.firebaseauth.domain.model.Resource
 import com.wenubey.firebaseauth.presentation.sign_in.SignInViewModel
 

@@ -14,6 +14,7 @@ object Constants {
     //SCREEN TITLES
     const val FORGOT_PASSWORD_SCREEN_TITLE = "Forgot Password"
     const val SIGN_IN_SCREEN_TITLE = "Sign In"
+    const val PROFILE_SCREEN_TITLE = "Profile"
 
 
     // BUTTONS
@@ -21,17 +22,19 @@ object Constants {
     const val RESET_PASSWORD = "Reset"
     const val SIGN_UP = "Sign up"
     const val SIGN_OUT = "Sign out"
-    const val DELETE = "Delete"
+    const val REVOKE_ACCESS = "Revoke Access"
 
 
     //TEXTS
     const val FORGOT_PASSWORD = "Forgot password?"
     const val NO_ACCOUNT = "Don't you have an account? Sign Up!"
+    const val REVOKE_ACCESS_MESSAGE = "You need to re-authenticate before revoking the access."
 
 
     //CONTENT DESCRIPTIONS
     const val BACK_BUTTON_DESCRIPTION = "Back to previous screen"
     const val PASSWORD_VISIBILITY_DESCRIPTION = "Password visibility on/off"
+    const val OPEN_MENU_DESCRIPTION = "This buttons opens the menu"
 
 
     //LABELS
@@ -40,6 +43,8 @@ object Constants {
 
     //MESSAGES
     const val RESET_PASSWORD_MESSAGE = "We've sent you an email with a link to reset the password."
+    const val ACCESS_REVOKED_MESSAGE = "Your access has been revoked."
+    const val SENSITIVE_OPERATION_MESSAGE = "This operation is sensitive and requires recent authentication. Log in again before retrying this request."
 
 
 }

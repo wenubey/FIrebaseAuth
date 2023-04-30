@@ -20,7 +20,7 @@ interface AuthRepository {
 
     fun signOut()
 
-    suspend fun deleteUser(): Resource<Boolean>
+    suspend fun revokeAccess(): Resource<Boolean>
 
     fun getAuthState(viewModelScope: CoroutineScope): StateFlow<Boolean>
 }

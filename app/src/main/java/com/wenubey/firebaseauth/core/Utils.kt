@@ -1,4 +1,4 @@
-package com.wenubey.firebaseauth.core.components
+package com.wenubey.firebaseauth.core
 
 import android.content.Context
 import android.util.Log
