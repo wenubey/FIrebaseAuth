@@ -17,19 +17,42 @@ fun NavGraph(
 ) {
     NavHost(navController = navController, startDestination = SignInScreen.route) {
         composable(route = SignInScreen.route) {
-            SignInScreen()
+            SignInScreen(
+                navigateToForgotPasswordScreen = {
+                    navController.navigate(ForgotPasswordScreen.route)
+                },
+                navigateToSignUpScreen = {
+                    navController.navigate(SignUpScreen.route)
+                }
+            )
         }
         composable(route = SignUpScreen.route) {
-            SignUpScreen()
+            SignUpScreen(
+                navigateBack = {
+                    navController.popBackStack()
+                }
+            )
         }
         composable(route = ForgotPasswordScreen.route) {
-            ForgotPasswordScreen()
+            ForgotPasswordScreen(
+                navigateBack = {
+                    navController.popBackStack()
+                }
+            )
         }
         composable(route = ProfileScreen.route) {
             ProfileScreen()
         }
         composable(route = VerifyEmailScreen.route) {
-            VerifyEmailScreen()
+            VerifyEmailScreen(
+                navigateToProfileScreen = {
+                    navController.navigate(ProfileScreen.route) {
+                        popUpTo(navController.graph.id) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
         }
     }
 }

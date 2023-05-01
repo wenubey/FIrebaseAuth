@@ -3,21 +3,18 @@ package com.wenubey.firebaseauth.presentation.sign_in.components
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -49,7 +46,8 @@ fun SignInContent(
     Column(
         modifier = Modifier
             .padding(paddingValues)
-            .fillMaxSize()
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         EmailTextField(email = email, onEmailValueChange = { email = it })
         Spacer(modifier = Modifier.height(8.dp))
@@ -61,17 +59,11 @@ fun SignInContent(
         }) {
             Text(text = SIGN_IN, fontSize = 16.sp)
         }
-        Row {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 modifier = Modifier.clickable {
                     navigateToForgotPasswordScreen()
                 }, text = FORGOT_PASSWORD, fontSize = 16.sp
-            )
-            Divider(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(start = 4.dp, end = 4.dp)
-                    .width(1.dp)
             )
             Text(
                 text = NO_ACCOUNT,

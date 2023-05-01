@@ -1,14 +1,15 @@
 package com.wenubey.firebaseauth.data.repository
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.google.firebase.auth.FirebaseUser
+import com.wenubey.firebaseauth.core.Constants.TAG
 import com.wenubey.firebaseauth.domain.model.Resource
 import com.wenubey.firebaseauth.domain.repository.AuthRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.tasks.await
@@ -27,9 +28,11 @@ class AuthRepositoryImpl @Inject constructor(
         password: String
     ): Resource<Boolean> {
         return try {
-            auth.createUserWithEmailAndPassword(email, password).await()
+            val xd = auth.createUserWithEmailAndPassword(email, password).await()
+            Log.d(TAG, "${xd.user}")
             Resource.Success(true)
         } catch (e: Exception) {
+            Log.e(TAG, "ERROR: $e")
             Resource.Error(e)
         }
     }
