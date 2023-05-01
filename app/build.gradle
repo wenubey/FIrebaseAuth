@@ -77,4 +77,11 @@ dependencies {
     def firebase_bom_version = "31.3.0"
     implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
     implementation "com.google.firebase:firebase-auth-ktx"
+    implementation "com.google.firebase:firebase-firestore-ktx"
+
+    //Play Services Auth
+    def play_services_auth_version = "20.5.0"
+    implementation "com.google.android.gms:play-services-auth:$play_services_auth_version"
+
+
 }

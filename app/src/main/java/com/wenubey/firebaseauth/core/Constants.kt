@@ -4,6 +4,9 @@ object Constants {
     //TAG for Log
     const val TAG = "authApp"
 
+    //DB REF
+    const val USERS = "users"
+
     // SCREENS
     const val SIGN_IN_SCREEN = "signInScreen"
     const val FORGOT_PASSWORD_SCREEN = "forgotPasswordScreen"
@@ -54,5 +57,16 @@ object Constants {
     const val SENSITIVE_OPERATION_MESSAGE = "This operation is sensitive and requires recent authentication. Log in again before retrying this request."
     const val VERIFY_EMAIL_MESSAGE = "We've sent you an email with a link to verify the email."
 
+    //IDS
+    const val WEB_CLIENT_ID = "196952031589-bvdmobutv6p44h48coh3ud9pc4dg8c4e.apps.googleusercontent.com"
 
+    //DI NAMES
+    const val SIGN_IN_REQUEST = "signInRequest"
+    const val SIGN_UP_REQUEST = "signUpRequest"
+
+    //USER FIELDS
+    const val DISPLAY_NAME = "displayName"
+    const val EMAIL = "email"
+    const val PHOTO_URL = "photoUrl"
+    const val CREATED_AT = "createdAt"
 }

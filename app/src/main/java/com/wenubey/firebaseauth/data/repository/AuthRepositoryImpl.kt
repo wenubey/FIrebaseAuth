@@ -1,25 +1,40 @@
 package com.wenubey.firebaseauth.data.repository
 
 import android.util.Log
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import com.wenubey.firebaseauth.core.Constants.SIGN_IN_REQUEST
+import com.wenubey.firebaseauth.core.Constants.SIGN_UP_REQUEST
 import com.wenubey.firebaseauth.core.Constants.TAG
+import com.wenubey.firebaseauth.core.Constants.USERS
+import com.wenubey.firebaseauth.core.toUser
 import com.wenubey.firebaseauth.domain.model.Resource
 import com.wenubey.firebaseauth.domain.repository.AuthRepository
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
 class AuthRepositoryImpl @Inject constructor(
-    private val auth: FirebaseAuth
-) : AuthRepository{
+    private val auth: FirebaseAuth,
+    private var oneTapClient: SignInClient,
+    @Named(SIGN_IN_REQUEST)
+    private var signInRequest: BeginSignInRequest,
+    @Named(SIGN_UP_REQUEST)
+    private var signUpRequest: BeginSignInRequest,
+    private val db: FirebaseFirestore
+) : AuthRepository {
     override val currentUser: FirebaseUser?
         get() = auth.currentUser
 
@@ -28,8 +43,13 @@ class AuthRepositoryImpl @Inject constructor(
         password: String
     ): Resource<Boolean> {
         return try {
-            val xd = auth.createUserWithEmailAndPassword(email, password).await()
-            Log.d(TAG, "${xd.user}")
+            val authResult  = auth.createUserWithEmailAndPassword(email, password).await()
+            val isNewUser = authResult.additionalUserInfo?.isNewUser ?: false
+            Log.i(TAG, "Is this new user ? $isNewUser")
+            if (isNewUser) {
+                addUserToFirestore()
+                Log.i(TAG, "USER SUCCESSFULLY ADDED TO DB ${authResult.user}")
+            }
             Resource.Success(true)
         } catch (e: Exception) {
             Log.e(TAG, "ERROR: $e")
@@ -52,8 +72,9 @@ class AuthRepositoryImpl @Inject constructor(
     ): Resource<Boolean> {
         return try {
             auth.signInWithEmailAndPassword(email, password).await()
+
             Resource.Success(true)
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             Resource.Error(e)
         }
     }
@@ -76,7 +97,7 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun signOut()  = auth.signOut()
+    override fun signOut() = auth.signOut()
 
     override suspend fun revokeAccess(): Resource<Boolean> {
         return try {
@@ -96,4 +117,11 @@ class AuthRepositoryImpl @Inject constructor(
             auth.removeAuthStateListener(authStateListener)
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), auth.currentUser == null)
+
+    private fun addUserToFirestore() {
+        currentUser?.apply {
+            val user = toUser()
+            db.collection(USERS).document(uid).set(user)
+        }
+    }
 }

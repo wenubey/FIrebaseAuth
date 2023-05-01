@@ -23,4 +23,5 @@ interface AuthRepository {
     suspend fun revokeAccess(): Resource<Boolean>
 
     fun getAuthState(viewModelScope: CoroutineScope): StateFlow<Boolean>
+
 }
