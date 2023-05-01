@@ -1,5 +1,6 @@
 package com.wenubey.firebaseauth.di
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.wenubey.firebaseauth.data.repository.AuthRepositoryImpl
@@ -12,6 +13,9 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Provides
+    fun provideFirebaseAuth() = Firebase.auth
 
     @Provides
     fun provideAuthRepository(): AuthRepository = AuthRepositoryImpl(
