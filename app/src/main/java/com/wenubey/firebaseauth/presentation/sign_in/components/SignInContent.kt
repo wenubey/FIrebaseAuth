@@ -33,7 +33,8 @@ fun SignInContent(
     paddingValues: PaddingValues,
     signIn: (email: String, password: String) -> Unit,
     navigateToForgotPasswordScreen: () -> Unit,
-    navigateToSignUpScreen: () -> Unit
+    navigateToSignUpScreen: () -> Unit,
+    oneTapSignIn: () -> Unit
 ) {
     var email by rememberSaveable(stateSaver = TextFieldValue.Saver) {
         mutableStateOf(TextFieldValue(""))
@@ -59,6 +60,7 @@ fun SignInContent(
         }) {
             Text(text = SIGN_IN, fontSize = 16.sp)
         }
+        GoogleSignInContent(paddingValues = paddingValues, oneTapSignIn = oneTapSignIn)
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 modifier = Modifier.clickable {

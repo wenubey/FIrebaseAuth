@@ -19,7 +19,7 @@ fun SignUp(
         is Resource.Success -> {
             val isUserSignedUp = result.data
             LaunchedEffect(isUserSignedUp) {
-                if (isUserSignedUp) {
+                if (isUserSignedUp!!) {
                     sendEmailVerification()
                     showVerifyEmailMessage()
                 }

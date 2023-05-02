@@ -6,14 +6,14 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wenubey.firebaseauth.domain.model.Resource
-import com.wenubey.firebaseauth.domain.repository.AuthRepository
+import com.wenubey.firebaseauth.domain.repository.AuthEmailPasswordRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val repo: AuthRepository
+    private val repo: AuthEmailPasswordRepository
 ) : ViewModel() {
 
     var revokeAccessResponse by mutableStateOf<Resource<Boolean>>(Resource.Success(false))

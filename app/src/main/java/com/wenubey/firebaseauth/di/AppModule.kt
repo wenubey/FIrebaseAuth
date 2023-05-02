@@ -15,8 +15,10 @@ import com.google.firebase.ktx.Firebase
 import com.wenubey.firebaseauth.core.Constants.SIGN_IN_REQUEST
 import com.wenubey.firebaseauth.core.Constants.SIGN_UP_REQUEST
 import com.wenubey.firebaseauth.core.Constants.WEB_CLIENT_ID
-import com.wenubey.firebaseauth.data.repository.AuthRepositoryImpl
-import com.wenubey.firebaseauth.domain.repository.AuthRepository
+import com.wenubey.firebaseauth.data.repository.AuthEmailPasswordRepositoryImpl
+import com.wenubey.firebaseauth.data.repository.AuthGoogleSignInRepositoryImpl
+import com.wenubey.firebaseauth.domain.repository.AuthEmailPasswordRepository
+import com.wenubey.firebaseauth.domain.repository.AuthGoogleSignInRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,21 +34,31 @@ object AppModule {
     fun provideFirebaseAuth() = Firebase.auth
 
     @Provides
-    fun provideAuthRepository(
+    fun provideAuthEmailPasswordRepository(
         auth: FirebaseAuth,
-        oneTapClient: SignInClient,
-        @Named(SIGN_IN_REQUEST) signInRequest: BeginSignInRequest,
-        @Named(
-            SIGN_UP_REQUEST
-        ) signUpRequest: BeginSignInRequest,
         db: FirebaseFirestore
-    ): AuthRepository =
-        AuthRepositoryImpl(
+    ): AuthEmailPasswordRepository =
+        AuthEmailPasswordRepositoryImpl(
             auth = auth,
+            db = db
+        )
+
+    @Provides
+    fun provideAuthGoogleSignInRepository(
+        auth: FirebaseAuth,
+        db: FirebaseFirestore,
+        oneTapClient: SignInClient,
+        @Named(SIGN_IN_REQUEST)
+        signInRequest: BeginSignInRequest,
+        @Named(SIGN_UP_REQUEST)
+        signUpRequest: BeginSignInRequest
+    ): AuthGoogleSignInRepository =
+        AuthGoogleSignInRepositoryImpl(
+            auth = auth,
+            db = db,
             oneTapClient = oneTapClient,
             signInRequest = signInRequest,
-            signUpRequest = signUpRequest,
-            db = db
+            signUpRequest = signUpRequest
         )
 
     @Provides
@@ -59,9 +71,7 @@ object AppModule {
 
     @Provides
     @Named(SIGN_IN_REQUEST)
-    fun provideSignInRequest(
-        app: Application
-    ) = BeginSignInRequest.builder()
+    fun provideSignInRequest() = BeginSignInRequest.builder()
         .setGoogleIdTokenRequestOptions(
             BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                 .setSupported(true)
@@ -73,7 +83,7 @@ object AppModule {
 
     @Provides
     @Named(SIGN_UP_REQUEST)
-    fun provideSignUpRequest(app: Application) = BeginSignInRequest.builder()
+    fun provideSignUpRequest() = BeginSignInRequest.builder()
         .setGoogleIdTokenRequestOptions(
             BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                 .setSupported(true)
@@ -84,7 +94,7 @@ object AppModule {
         .build()
 
     @Provides
-    fun provideGoogleSignInOptions(app: Application) =
+    fun provideGoogleSignInOptions() =
         GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(WEB_CLIENT_ID)
             .requestEmail()

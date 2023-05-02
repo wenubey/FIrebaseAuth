@@ -28,6 +28,7 @@ object Constants {
     const val SIGN_UP = "Sign up"
     const val SIGN_OUT = "Sign out"
     const val REVOKE_ACCESS = "Revoke Access"
+    const val SIGN_IN_WITH_GOOGLE = "Sign in with Google"
 
 
     //TEXTS
@@ -44,6 +45,7 @@ object Constants {
     const val BACK_BUTTON_DESCRIPTION = "Back to previous screen"
     const val PASSWORD_VISIBILITY_DESCRIPTION = "Password visibility on/off"
     const val OPEN_MENU_DESCRIPTION = "This buttons opens the menu"
+    const val GOOGLE_SIGN_IN_BUTTON_DESCRIPTION = "Sign in with Google"
 
 
     //LABELS
@@ -58,7 +60,8 @@ object Constants {
     const val VERIFY_EMAIL_MESSAGE = "We've sent you an email with a link to verify the email."
 
     //IDS
-    const val WEB_CLIENT_ID = "196952031589-bvdmobutv6p44h48coh3ud9pc4dg8c4e.apps.googleusercontent.com"
+    const val WEB_CLIENT_ID = "196952031589-6tk8vst6uevn1btgjljhpkv3fols076i.apps.googleusercontent.com"
+
 
     //DI NAMES
     const val SIGN_IN_REQUEST = "signInRequest"
@@ -68,5 +71,4 @@ object Constants {
     const val DISPLAY_NAME = "displayName"
     const val EMAIL = "email"
     const val PHOTO_URL = "photoUrl"
-    const val CREATED_AT = "createdAt"
 }

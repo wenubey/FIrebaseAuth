@@ -2,13 +2,13 @@ package com.wenubey.firebaseauth.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wenubey.firebaseauth.domain.repository.AuthRepository
+import com.wenubey.firebaseauth.domain.repository.AuthEmailPasswordRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repo: AuthRepository
+    private val repo: AuthEmailPasswordRepository
 ): ViewModel() {
 
     init {

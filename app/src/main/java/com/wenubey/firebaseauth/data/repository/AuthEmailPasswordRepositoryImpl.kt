@@ -1,40 +1,29 @@
 package com.wenubey.firebaseauth.data.repository
 
 import android.util.Log
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
-import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.wenubey.firebaseauth.core.Constants.SIGN_IN_REQUEST
-import com.wenubey.firebaseauth.core.Constants.SIGN_UP_REQUEST
 import com.wenubey.firebaseauth.core.Constants.TAG
 import com.wenubey.firebaseauth.core.Constants.USERS
 import com.wenubey.firebaseauth.core.toUser
 import com.wenubey.firebaseauth.domain.model.Resource
-import com.wenubey.firebaseauth.domain.repository.AuthRepository
+import com.wenubey.firebaseauth.domain.repository.AuthEmailPasswordRepository
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
-class AuthRepositoryImpl @Inject constructor(
+class AuthEmailPasswordRepositoryImpl @Inject constructor(
     private val auth: FirebaseAuth,
-    private var oneTapClient: SignInClient,
-    @Named(SIGN_IN_REQUEST)
-    private var signInRequest: BeginSignInRequest,
-    @Named(SIGN_UP_REQUEST)
-    private var signUpRequest: BeginSignInRequest,
     private val db: FirebaseFirestore
-) : AuthRepository {
+) : AuthEmailPasswordRepository {
     override val currentUser: FirebaseUser?
         get() = auth.currentUser
 

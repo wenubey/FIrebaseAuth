@@ -20,7 +20,7 @@ fun ForgotPassword(
         is Resource.Success -> {
             val isResetEmailSent = response.data
             LaunchedEffect(isResetEmailSent) {
-                if (isResetEmailSent) {
+                if (isResetEmailSent!!) {
                     navigateBack()
                     showResetPasswordMessage()
                 }

@@ -5,7 +5,7 @@ import com.wenubey.firebaseauth.domain.model.Resource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow
 
-interface AuthRepository {
+interface AuthEmailPasswordRepository {
     val currentUser: FirebaseUser?
 
     suspend fun signUpWithEmailAndPassword(email: String, password: String): Resource<Boolean>

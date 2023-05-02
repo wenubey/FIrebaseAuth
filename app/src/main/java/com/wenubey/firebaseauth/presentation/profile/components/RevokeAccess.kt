@@ -42,7 +42,7 @@ fun RevokeAccess(
         is Resource.Success -> {
             val isAccessRevoked = result.data
             LaunchedEffect(isAccessRevoked) {
-                if (isAccessRevoked) {
+                if (isAccessRevoked!!) {
                     context.makeToast(ACCESS_REVOKED_MESSAGE)
                 }
             }
