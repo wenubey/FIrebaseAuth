@@ -60,13 +60,16 @@ fun SignInContent(
         }) {
             Text(text = SIGN_IN, fontSize = 16.sp)
         }
+        Spacer(modifier = Modifier.height(8.dp))
         GoogleSignInContent(paddingValues = paddingValues, oneTapSignIn = oneTapSignIn)
+        Spacer(modifier = Modifier.height(8.dp))
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 modifier = Modifier.clickable {
                     navigateToForgotPasswordScreen()
                 }, text = FORGOT_PASSWORD, fontSize = 16.sp
             )
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = NO_ACCOUNT,
                 modifier = Modifier.clickable { navigateToSignUpScreen() },

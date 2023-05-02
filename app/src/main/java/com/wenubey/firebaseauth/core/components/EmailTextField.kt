@@ -20,7 +20,7 @@ fun EmailTextField(
     email: TextFieldValue,
     onEmailValueChange: (email: TextFieldValue) -> Unit
 ) {
-    val focusRequester = FocusRequester()
+
 
     OutlinedTextField(
         value = email,
@@ -28,11 +28,5 @@ fun EmailTextField(
         label = { Text(text = Constants.EMAIL_LABEL) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-        modifier = Modifier.focusRequester(focusRequester)
     )
-    LaunchedEffect(Unit) {
-        coroutineContext.job.invokeOnCompletion {
-            focusRequester.requestFocus()
-        }
-    }
 }

@@ -30,7 +30,7 @@ fun ProfileScreen(
                 revokeAccess = { viewModel.revokeAccess() })
         },
         content = { paddingValues ->
-            ProfileContent(paddingValues = paddingValues)
+            ProfileContent(paddingValues = paddingValues, user = viewModel.currentUser )
 
         },
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }

@@ -46,6 +46,7 @@ object Constants {
     const val PASSWORD_VISIBILITY_DESCRIPTION = "Password visibility on/off"
     const val OPEN_MENU_DESCRIPTION = "This buttons opens the menu"
     const val GOOGLE_SIGN_IN_BUTTON_DESCRIPTION = "Sign in with Google"
+    const val PROFILE_PICTURE_CONTENT_DESCRIPTION = "Your profile picture"
 
 
     //LABELS

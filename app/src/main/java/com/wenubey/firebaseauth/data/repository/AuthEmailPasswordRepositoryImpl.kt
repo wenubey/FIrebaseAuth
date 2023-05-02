@@ -34,14 +34,11 @@ class AuthEmailPasswordRepositoryImpl @Inject constructor(
         return try {
             val authResult  = auth.createUserWithEmailAndPassword(email, password).await()
             val isNewUser = authResult.additionalUserInfo?.isNewUser ?: false
-            Log.i(TAG, "Is this new user ? $isNewUser")
             if (isNewUser) {
                 addUserToFirestore()
-                Log.i(TAG, "USER SUCCESSFULLY ADDED TO DB ${authResult.user}")
             }
             Resource.Success(true)
         } catch (e: Exception) {
-            Log.e(TAG, "ERROR: $e")
             Resource.Error(e)
         }
     }

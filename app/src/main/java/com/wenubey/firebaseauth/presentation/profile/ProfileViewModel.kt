@@ -20,6 +20,8 @@ class ProfileViewModel @Inject constructor(
 
     var reloadUserResponse by mutableStateOf<Resource<Boolean>>(Resource.Success(false))
 
+    val currentUser get() = repo.currentUser
+
     fun reloadUser() = viewModelScope.launch {
         reloadUserResponse = Resource.Loading
 

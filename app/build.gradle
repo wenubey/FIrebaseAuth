@@ -83,5 +83,9 @@ dependencies {
     def play_services_auth_version = "20.5.0"
     implementation "com.google.android.gms:play-services-auth:$play_services_auth_version"
 
+    //Coil
+    def coil_compose_version = "2.3.0"
+    implementation "io.coil-kt:coil-compose:$coil_compose_version"
+
 
 }

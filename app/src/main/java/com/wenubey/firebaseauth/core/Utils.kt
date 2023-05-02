@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseUser
-import com.wenubey.firebaseauth.core.Constants.CREATED_AT
 import com.wenubey.firebaseauth.core.Constants.DISPLAY_NAME
 import com.wenubey.firebaseauth.core.Constants.EMAIL
 import com.wenubey.firebaseauth.core.Constants.PHOTO_URL

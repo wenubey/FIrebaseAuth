@@ -58,7 +58,6 @@ fun SignInScreen(
                         viewModel.oneTapClient.getSignInCredentialFromIntent(result.data)
                     val googleIdToken = credentials.googleIdToken
                     val googleCredentials = getCredential(googleIdToken, null)
-                    Log.i(TAG, "User Credentials: $googleCredentials")
                     viewModel.signInWithGoogle(googleCredentials)
                 } catch (it: ApiException) {
                     printLog(it)
