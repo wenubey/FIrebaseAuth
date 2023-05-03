@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow
 
 interface AuthEmailPasswordRepository {
+
     val currentUser: FirebaseUser?
 
     suspend fun signUpWithEmailAndPassword(email: String, password: String): Resource<Boolean>
@@ -14,13 +15,7 @@ interface AuthEmailPasswordRepository {
 
     suspend fun signInWithEmailAndPassword(email: String, password: String): Resource<Boolean>
 
-    suspend fun reloadUser(): Resource<Boolean>
-
     suspend fun sendPasswordResetEmail(email: String): Resource<Boolean>
-
-    fun signOut()
-
-    suspend fun revokeAccess(): Resource<Boolean>
 
     fun getAuthState(viewModelScope: CoroutineScope): StateFlow<Boolean>
 

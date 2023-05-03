@@ -1,11 +1,9 @@
 package com.wenubey.firebaseauth.data.repository
 
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.wenubey.firebaseauth.core.Constants.TAG
 import com.wenubey.firebaseauth.core.Constants.USERS
 import com.wenubey.firebaseauth.core.toUser
 import com.wenubey.firebaseauth.domain.model.Resource
@@ -24,8 +22,9 @@ class AuthEmailPasswordRepositoryImpl @Inject constructor(
     private val auth: FirebaseAuth,
     private val db: FirebaseFirestore
 ) : AuthEmailPasswordRepository {
+
     override val currentUser: FirebaseUser?
-        get() = auth.currentUser
+        get()  = auth.currentUser
 
     override suspend fun signUpWithEmailAndPassword(
         email: String,
@@ -65,14 +64,7 @@ class AuthEmailPasswordRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun reloadUser(): Resource<Boolean> {
-        return try {
-            auth.currentUser?.reload()?.await()
-            Resource.Success(true)
-        } catch (e: Exception) {
-            Resource.Error(e)
-        }
-    }
+
 
     override suspend fun sendPasswordResetEmail(email: String): Resource<Boolean> {
         return try {
@@ -83,16 +75,6 @@ class AuthEmailPasswordRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun signOut() = auth.signOut()
-
-    override suspend fun revokeAccess(): Resource<Boolean> {
-        return try {
-            auth.currentUser?.delete()?.await()
-            Resource.Success(true)
-        } catch (e: Exception) {
-            Resource.Error(e)
-        }
-    }
 
     override fun getAuthState(viewModelScope: CoroutineScope) = callbackFlow {
         val authStateListener = AuthStateListener { auth ->
@@ -105,7 +87,7 @@ class AuthEmailPasswordRepositoryImpl @Inject constructor(
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), auth.currentUser == null)
 
     private fun addUserToFirestore() {
-        currentUser?.apply {
+        auth.currentUser?.apply {
             val user = toUser()
             db.collection(USERS).document(uid).set(user)
         }
