@@ -20,6 +20,8 @@ class ProfileViewModel @Inject constructor(
 
     var reloadUserResponse by mutableStateOf<Resource<Boolean>>(Resource.Success(false))
 
+    var updateUserResponse by mutableStateOf<Resource<Boolean>>(Resource.Success(false))
+
     val currentUser get() = repo.currentUser
 
     fun reloadUser() = viewModelScope.launch {
@@ -36,6 +38,16 @@ class ProfileViewModel @Inject constructor(
         revokeAccessResponse = Resource.Loading
 
         revokeAccessResponse = repo.revokeAccess()
+    }
+
+    fun updateUser(newDisplayName: String, email: String) = viewModelScope.launch {
+        updateUserResponse = Resource.Loading
+
+        updateUserResponse = repo.updateUser(newDisplayName, email)
+    }
+
+    fun updateUserProfilePhoto(photoUrl:String) = viewModelScope.launch {
+        repo.updateUserProfilePhoto(photoUrl)
     }
 
 }

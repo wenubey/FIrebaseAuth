@@ -12,4 +12,8 @@ interface ProfileRepository {
 
     suspend fun reloadUser(): Resource<Boolean>
 
+    suspend fun updateUser(newDisplayName: String, email: String) : Resource<Boolean>
+
+    suspend fun updateUserProfilePhoto(newPhotoUrl: String): Resource<Boolean>
+
 }

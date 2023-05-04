@@ -5,8 +5,8 @@ import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.wenubey.firebaseauth.core.Constants.USERS
-import com.wenubey.firebaseauth.core.toUser
 import com.wenubey.firebaseauth.domain.model.Resource
+import com.wenubey.firebaseauth.domain.model.toUser
 import com.wenubey.firebaseauth.domain.repository.AuthEmailPasswordRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.awaitClose

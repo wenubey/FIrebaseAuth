@@ -53,8 +53,9 @@ object AppModule {
 
     @Provides
     fun provideProfileRepository(
-        auth: FirebaseAuth
+        auth: FirebaseAuth,
+        db: FirebaseFirestore
     ): ProfileRepository =
-        ProfileRepositoryImpl(auth = auth)
+        ProfileRepositoryImpl(auth = auth, db = db)
 
 }

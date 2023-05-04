@@ -7,8 +7,8 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.wenubey.firebaseauth.core.Constants
-import com.wenubey.firebaseauth.core.toUser
 import com.wenubey.firebaseauth.domain.model.Resource
+import com.wenubey.firebaseauth.domain.model.toUser
 import com.wenubey.firebaseauth.domain.repository.AuthGoogleSignInRepository
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
