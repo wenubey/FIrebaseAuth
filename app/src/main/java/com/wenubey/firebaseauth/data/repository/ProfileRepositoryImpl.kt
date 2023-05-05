@@ -1,6 +1,5 @@
 package com.wenubey.firebaseauth.data.repository
 
-import androidx.core.net.toUri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -30,6 +29,7 @@ class ProfileRepositoryImpl @Inject constructor(
 
     override suspend fun revokeAccess(): Resource<Boolean> {
         return try {
+            db.collection(Constants.USERS).document(auth.currentUser?.uid!!).delete()
             auth.currentUser?.delete()?.await()
             Resource.Success(true)
         } catch (e: Exception) {
@@ -64,16 +64,8 @@ class ProfileRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun updateUserProfilePhoto(newPhotoUrl: String): Resource<Boolean> {
-        return try {
-            val profileUpdates = userProfileChangeRequest {
-                photoUri = newPhotoUrl.toUri()
-            }
-            auth.currentUser?.updateProfile(profileUpdates)?.await()
-            db.collection(Constants.USERS).document(auth.currentUser!!.uid).update("photoUrl", newPhotoUrl)
-            Resource.Success(true)
-        } catch (e: Exception) {
-            Resource.Error(e)
-        }
-    }
+
+
+
+
 }

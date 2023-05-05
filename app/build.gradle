@@ -87,5 +87,7 @@ dependencies {
     def coil_compose_version = "2.3.0"
     implementation "io.coil-kt:coil-compose:$coil_compose_version"
 
+    implementation "com.github.bumptech.glide:compose:1.0.0-alpha.1"
+
 
 }

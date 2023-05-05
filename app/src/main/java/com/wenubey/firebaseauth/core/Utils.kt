@@ -11,5 +11,7 @@ class Utils {
         fun printLog(e: Exception) = Log.e(TAG, e.stackTraceToString())
 
         fun Context.makeToast(message: String?) = Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+
+
     }
 }

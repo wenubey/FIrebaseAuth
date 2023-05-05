@@ -46,8 +46,5 @@ class ProfileViewModel @Inject constructor(
         updateUserResponse = repo.updateUser(newDisplayName, email)
     }
 
-    fun updateUserProfilePhoto(photoUrl:String) = viewModelScope.launch {
-        repo.updateUserProfilePhoto(photoUrl)
-    }
 
 }

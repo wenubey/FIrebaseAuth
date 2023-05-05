@@ -14,6 +14,4 @@ interface ProfileRepository {
 
     suspend fun updateUser(newDisplayName: String, email: String) : Resource<Boolean>
 
-    suspend fun updateUserProfilePhoto(newPhotoUrl: String): Resource<Boolean>
-
 }

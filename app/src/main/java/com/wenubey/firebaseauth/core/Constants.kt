@@ -49,8 +49,6 @@ object Constants {
     const val GOOGLE_SIGN_IN_BUTTON_DESCRIPTION = "Sign in with Google"
     const val PROFILE_PICTURE_CONTENT_DESCRIPTION = "Your profile picture"
     const val PROFILE_UPDATE_FAB_DESCRIPTION = "This buttons open the profile edit screen"
-    const val PROFILE_PICTURE_PICKER_DESCRIPTION = "Change your profile photo"
-
 
     //LABELS
     const val EMAIL_LABEL = "Email"
@@ -75,7 +73,7 @@ object Constants {
     const val SIGN_UP_REQUEST = "signUpRequest"
 
     //USER FIELDS
-    const val DISPLAY_NAME = "Display Name"
-    const val EMAIL = "Email"
     const val PROFILE_INFO = "Profile Info"
+
+
 }

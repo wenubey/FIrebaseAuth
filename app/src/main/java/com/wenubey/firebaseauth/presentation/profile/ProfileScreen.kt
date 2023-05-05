@@ -36,6 +36,8 @@ fun ProfileScreen(
     var displayName by remember { mutableStateOf(TextFieldValue(viewModel.currentUser?.displayName ?: "")) }
     var refresh by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
+
+
     Scaffold(
         topBar = {
             TopBar(
@@ -47,9 +49,8 @@ fun ProfileScreen(
             ProfileContent(
                 paddingValues = paddingValues,
                 displayName = viewModel.currentUser?.displayName,
-                photoUrl = viewModel.currentUser?.photoUrl.toString(),
-                pickMedia = {
-                })
+                photoUrl = viewModel.currentUser?.photoUrl?.toString(),
+               )
             LaunchedEffect(refresh) { refresh = false }
 
         },
